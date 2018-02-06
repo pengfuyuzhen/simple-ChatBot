@@ -55,7 +55,7 @@ function bot(data,socket,questionNum) {
     waitTime = 3000;
     question = 'In what year was Cornell University founded?'; // load next question
   } else if (questionNum == 1) {
-    if (checkAnswer(input, questionNum)) {
+    if (checkAnswer(input, questionNum, socket)) {
       answer = 'Correct!';
       numberOfCorrectAnswer += 1;
     } else {
@@ -64,7 +64,7 @@ function bot(data,socket,questionNum) {
     waitTime = 2500;
     question = 'Which character is the first to speak in Star Wars?'; // load next question
   } else if (questionNum == 2) {
-    if (checkAnswer(input, questionNum)) {
+    if (checkAnswer(input, questionNum, socket)) {
       answer = 'Correct!';
       numberOfCorrectAnswer += 1;
     } else {
@@ -73,7 +73,7 @@ function bot(data,socket,questionNum) {
     waitTime = 2500;
     question = 'The Statue of Liberty was given to the US by which country?'; // load next question
   } else if (questionNum == 3) {
-    if (checkAnswer(input, questionNum)) {
+    if (checkAnswer(input, questionNum, socket)) {
       answer = 'Correct!';
       numberOfCorrectAnswer += 1;
     } else {
@@ -82,7 +82,7 @@ function bot(data,socket,questionNum) {
     waitTime = 2500;
     question = 'The song "My Heart Will Go On" came from what movie?';            // load next question
   } else if (questionNum == 4) {
-    if (checkAnswer(input, questionNum)) {
+    if (checkAnswer(input, questionNum, socket)) {
       answer = 'Correct!';
       numberOfCorrectAnswer += 1;
     } else {
@@ -102,7 +102,7 @@ function bot(data,socket,questionNum) {
   return (questionNum+1);
 }
 
-function checkAnswer(answer, questionNumber) {
+function checkAnswer(answer, questionNumber, socket) {
   var isCorrect = false;
   if (questionNumber == 1) {
     if (answer == '1865') isCorrect = true;
@@ -114,10 +114,17 @@ function checkAnswer(answer, questionNumber) {
     if (answer.toLowerCase() == 'titanic') isCorrect = true;
   }
 
-  return isCorrect;
+  if (isCorrect) {
+    socket.emit('changeBG','#7AE582');
+  } else {
+    socket.emit('changeBG','#D1495B');
+  }
+
+  return isCorrect
 }
 
 function timedQuestion(socket,question) {
+  socket.emit('changeBG','#006992');
   if(question!='') {
     socket.emit('question',question);
   } else{

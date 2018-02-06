@@ -4,13 +4,13 @@
 }
 
 body {
-	background-color: #f0db4f;
+	background-color: #006992;
 }
 
 h1, p {
 	font-family: sans-serif;
 	text-align: center;
-	color: #323330;
+	color: #FAFFFD;
 	font-size:  100px;
 }
 
@@ -30,7 +30,7 @@ input {
     background-color: #eee;
     border: none;
     font-family: sans-serif;
-    color: #000;
+    color: #342E37;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
